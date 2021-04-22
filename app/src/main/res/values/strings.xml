@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">MoviesApp</string>
+    <string name="mi_popular">Popular Movies</string>
+    <string name="mi_upcoming">Upcoming Movies</string>
+    <string name="mi_highest">Highest Rated</string>
+    <string name="iv_poster_content">This is the Poster of the movie.</string>
+    <string name="overview">Overview:</string>
+    <string name="label_review">Reviews</string>
+    <string name="label_trailers">Trailers:</string>
+    <string name="fav_btn_desc">Add to Favourites</string>
+    <string name="meu_favourites">Favourites</string>
+    <string name="trending">Trending</string>
+    <string name="movie_poster">Movie Poster</string>
+    <string name="api_key">"Enter Your API key here"</string>
+</resources>
