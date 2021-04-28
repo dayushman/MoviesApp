@@ -1,4 +1,4 @@
-package com.example.moviesapp;
+package com.example.moviesapp.database;
 
 import com.example.moviesapp.Model.Movies;
 

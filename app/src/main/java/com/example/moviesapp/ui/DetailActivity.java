@@ -1,4 +1,4 @@
-package com.example.moviesapp;
+package com.example.moviesapp.ui;
 
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -8,13 +8,14 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.example.moviesapp.Adapters.ReviewAdapter;
 import com.example.moviesapp.Adapters.TrailerAdapter;
 import com.example.moviesapp.Model.*;
+import com.example.moviesapp.R;
 import com.example.moviesapp.Utilities.*;
+import com.example.moviesapp.database.AppRepository;
 import com.google.android.material.snackbar.BaseTransientBottomBar;
 import com.google.android.material.snackbar.Snackbar;
 import com.squareup.picasso.Picasso;
@@ -31,7 +32,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-import static com.example.moviesapp.MainActivity.isOnline;
+import static com.example.moviesapp.ui.MainActivity.isOnline;
 
 public class DetailActivity extends AppCompatActivity {
 

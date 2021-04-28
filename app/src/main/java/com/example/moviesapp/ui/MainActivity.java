@@ -1,4 +1,4 @@
-package com.example.moviesapp;
+package com.example.moviesapp.ui;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -20,6 +20,7 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 
 import com.example.moviesapp.Model.Movies;
+import com.example.moviesapp.R;
 import com.example.moviesapp.Utilities.JSONUtils;
 import com.example.moviesapp.Utilities.NetworkUtil;
 import com.example.moviesapp.Adapters.MoviesAdapter;
@@ -109,7 +110,7 @@ public class MainActivity extends AppCompatActivity implements MoviesAdapter.onM
             return true;
         }
         if (item.getItemId() == R.id.fav_menu_btn){
-            Intent intent = new Intent(MainActivity.this,FavActivity.class);
+            Intent intent = new Intent(MainActivity.this, FavActivity.class);
             startActivity(intent);
             return true;
         }
@@ -126,7 +127,7 @@ public class MainActivity extends AppCompatActivity implements MoviesAdapter.onM
     @Override
     public void onMovieClick(int position) {
 
-       Intent intent = new Intent(this,DetailActivity.class);
+       Intent intent = new Intent(this, DetailActivity.class);
 
         intent.putExtra(PASSED_MOVIE_KEY,mMovieData[position]);
         startActivity(intent);

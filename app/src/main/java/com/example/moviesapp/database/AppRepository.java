@@ -1,7 +1,6 @@
-package com.example.moviesapp;
+package com.example.moviesapp.database;
 
 import android.app.Application;
-import android.graphics.Movie;
 import android.util.Log;
 
 import com.example.moviesapp.Model.Movies;
@@ -54,8 +53,6 @@ public class AppRepository {
 
     public List<Movies> searchMovie(String movieID){
         AppExecutor.getInstance().getDiskIO().execute(new Runnable() {
-
-
             @Override
             public void run() {
                 searchResult = mMoviesDB.getDao().searchMovie(movieID);

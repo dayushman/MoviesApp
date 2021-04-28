@@ -1,24 +1,21 @@
-package com.example.moviesapp;
+package com.example.moviesapp.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.lifecycle.LiveData;
 import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 
 import com.example.moviesapp.Adapters.MoviesAdapter;
 import com.example.moviesapp.Model.Movies;
-import com.example.moviesapp.Model.Review;
+import com.example.moviesapp.R;
+import com.example.moviesapp.database.AppRepository;
 
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
-import static com.example.moviesapp.MainActivity.calculateNoOfColumns;
+import static com.example.moviesapp.ui.MainActivity.calculateNoOfColumns;
 
 public class FavActivity extends AppCompatActivity implements MoviesAdapter.onMovieClickListener {
 
@@ -62,7 +59,7 @@ public class FavActivity extends AppCompatActivity implements MoviesAdapter.onMo
     @Override
     public void onMovieClick(int position) {
 
-        Intent intent = new Intent(this,DetailActivity.class);
+        Intent intent = new Intent(this, DetailActivity.class);
 
         intent.putExtra(PASSED_MOVIE_KEY,mMovieData[position]);
         startActivity(intent);

@@ -6,7 +6,7 @@
     android:orientation="vertical"
     android:background="#121212"
     android:layout_height="match_parent"
-    tools:context=".FavActivity">
+    tools:context=".ui.FavActivity">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_fav_movies"

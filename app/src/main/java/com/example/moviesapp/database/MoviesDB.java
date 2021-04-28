@@ -1,6 +1,5 @@
-package com.example.moviesapp;
+package com.example.moviesapp.database;
 
-import android.app.Application;
 import android.content.Context;
 
 import com.example.moviesapp.Model.Movies;
