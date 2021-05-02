@@ -117,7 +117,7 @@
             style="@style/Detail_details"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            app:layout_constraintBottom_toTopOf="@+id/tv_review_label"
+            app:layout_constraintBottom_toTopOf="@+id/tv_detail_label"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="@id/start_margin"
@@ -125,25 +125,25 @@
             tools:text="overview comes here" />
 
         <TextView
-            android:id="@+id/tv_review_label"
+            android:id="@+id/tv_detail_label"
             style="@style/Detail_label"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
-            android:text="@string/label_review"
+            android:text="@string/label_trailers"
             app:layout_constraintBottom_toTopOf="@+id/rv_review"
             app:layout_constraintEnd_toStartOf="@+id/btn_rev_expnd"
             app:layout_constraintStart_toStartOf="@id/start_margin"
             app:layout_constraintTop_toBottomOf="@+id/tv_desc" />
 
         <TextView
-            android:id="@+id/tv_trailer_label"
+            android:id="@+id/tv_review_label"
             style="@style/Detail_label"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
             android:layout_marginBottom="24dp"
-            android:text="@string/label_trailers"
+            android:text="@string/label_review"
             app:layout_constraintBottom_toTopOf="@+id/rv_trailers"
             app:layout_constraintEnd_toStartOf="@+id/btn_trailer_expnd"
             app:layout_constraintStart_toStartOf="@id/start_margin"
@@ -167,10 +167,10 @@
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
             android:visibility="gone"
-            app:layout_constraintBottom_toTopOf="@+id/tv_trailer_label"
+            app:layout_constraintBottom_toTopOf="@+id/tv_review_label"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@id/start_margin"
-            app:layout_constraintTop_toBottomOf="@+id/tv_review_label">
+            app:layout_constraintTop_toBottomOf="@+id/tv_detail_label">
 
         </androidx.recyclerview.widget.RecyclerView>
 
@@ -186,7 +186,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@id/start_margin"
-            app:layout_constraintTop_toBottomOf="@id/tv_trailer_label" />
+            app:layout_constraintTop_toBottomOf="@id/tv_review_label" />
 
         <ImageButton
             android:id="@+id/btn_rev_expnd"
@@ -195,10 +195,10 @@
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
             android:background="#121212"
-            app:layout_constraintBottom_toBottomOf="@+id/tv_review_label"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_detail_label"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/tv_review_label"
-            app:layout_constraintTop_toTopOf="@+id/tv_review_label"
+            app:layout_constraintStart_toEndOf="@+id/tv_detail_label"
+            app:layout_constraintTop_toTopOf="@+id/tv_detail_label"
             app:srcCompat="@drawable/ic_baseline_expand_more_24" />
 
         <ImageButton
@@ -208,10 +208,10 @@
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
             android:background="#121212"
-            app:layout_constraintBottom_toBottomOf="@+id/tv_trailer_label"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_review_label"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/tv_trailer_label"
-            app:layout_constraintTop_toTopOf="@+id/tv_trailer_label"
+            app:layout_constraintStart_toEndOf="@+id/tv_review_label"
+            app:layout_constraintTop_toTopOf="@+id/tv_review_label"
             app:srcCompat="@drawable/ic_baseline_expand_more_24" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

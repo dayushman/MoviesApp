@@ -131,7 +131,7 @@ public class DetailActivity extends AppCompatActivity {
             String trailerEndPoint = movieID + "/videos";
             loadTrailer(trailerEndPoint);
             if(MainActivity.query.equalsIgnoreCase("upcoming")){
-                findViewById(R.id.tv_review_label).setVisibility(View.GONE);
+                findViewById(R.id.tv_detail_label).setVisibility(View.GONE);
                 findViewById(R.id.btn_rev_expnd).setVisibility(View.GONE);
             }
             else{
