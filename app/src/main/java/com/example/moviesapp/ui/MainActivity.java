@@ -96,7 +96,6 @@ public class MainActivity extends AppCompatActivity implements MoviesAdapter.onM
 
         if (item.getItemId()==R.id.menu_highest){
             query = "top_rated";
-            loadData();
             return true;
         }
         if (item.getItemId()==R.id.menu_upcoming){

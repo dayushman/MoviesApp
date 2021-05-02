@@ -20,7 +20,7 @@ public class NetworkUtil {
     private static String API_KEY_PARA = "api_key";
     private static String LANGUAGE_PARA = "language";
     private static String LANGUAGE = "en-US";
-    private static String  API_KEY = Resources.getSystem().getString(R.string.api_key);
+    private static String  API_KEY = "3d99e2f3c1a522e9a3c98fc07f836797";
 
 
     //Builds the api URL
