@@ -25,6 +25,10 @@ public class Movies implements Serializable {
     @ColumnInfo(name = "poster")
     private String poster;
 
+
+    @ColumnInfo(name = "header")
+    private String header;
+
     @ColumnInfo(name="releaseDate")
     private String releaseDate;
 
@@ -81,6 +85,10 @@ public class Movies implements Serializable {
     public boolean isFav() {
         return isFav;
     }
+
+    public String getHeader() { return header; }
+
+    public void setHeader(String header) { this.header = header; }
 
     public String getMovieID() {
         return movieID;

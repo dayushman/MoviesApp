@@ -21,13 +21,14 @@ public class JSONUtils {
     private static final String TRAILER_TYPE_KEY = "type";
 
 
-    private static String IMAGE_API_URL = "https://image.tmdb.org/t/p/w500";
+    private static String IMAGE_API_URL = "https://image.tmdb.org/t/p/";
 
 
     private static String TITLE_KEY = "title";
     private static String RATING_KEY = "vote_average";
     private static String RELEASE_DATE_KEY = "release_date";
     private static String POSTER_KEY = "poster_path";
+    private static String HEADER_KEY = "backdrop_path";
     private static String OVERVIEW_KEY = "overview";
     private static String MOVIE_ID_KEY = "id";
 
@@ -45,7 +46,9 @@ public class JSONUtils {
 
             movies.setMovieID(json.optString(MOVIE_ID_KEY));
             movies.setOverview(json.optString(OVERVIEW_KEY));
-            movies.setPoster(IMAGE_API_URL+json.optString(POSTER_KEY));
+            movies.setPoster(json.optString(POSTER_KEY));
+            movies.setReleaseDate(json.getString(RELEASE_DATE_KEY));
+            movies.setHeader(json.optString(HEADER_KEY));
             movies.setTitle(json.optString(TITLE_KEY));
             movies.setRating(json.get(RATING_KEY).toString());
 
@@ -82,10 +85,6 @@ public class JSONUtils {
             reviews[i] = review;
         }
 
-
-        /*for (int i = 0;i<reviews.length;i++){
-            Log.i("hii", "updateReview: "+reviews[i].getAuthor());
-        }*/
         return reviews;
     }
 

@@ -39,6 +39,7 @@ public class DetailActivity extends AppCompatActivity {
 
     private static final String PASSED_MOVIE_KEY = "passed movie";
 
+    private static String IMAGE_API_URL = "https://image.tmdb.org/t/p/original";
 
     Trailers[] mTrailers;
     Review[] mReview;
@@ -107,8 +108,11 @@ public class DetailActivity extends AppCompatActivity {
         ButterKnife.bind(this);
 
 
-        Picasso.get().load(poster).error(R.drawable.image_not_found)
+        Picasso.get().load(IMAGE_API_URL+poster).error(R.drawable.image_not_found)
                 .into(posterView);
+        Picasso.get().load(IMAGE_API_URL+poster).error(R.drawable.image_not_found)
+                .into(headerView);
+
         titleView.setText(title);
         ratingView.setText(rating);
         descView.setText(desc);

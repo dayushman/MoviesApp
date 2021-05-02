@@ -15,6 +15,7 @@
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/iv_movie_poster"
             android:layout_width="wrap_content"
+            android:src="@android:color/black"
             android:layout_height="wrap_content"
             android:scaleType="centerCrop"/>
 
@@ -26,5 +27,13 @@
         android:layout_height="wrap_content"
         android:id="@+id/tv_movie_title"
         android:fontFamily="@font/roboto"
+        android:textSize="14sp"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:text="@string/api_key"
+        android:textColor="@android:color/white"
+        android:layout_height="wrap_content"
+        android:id="@+id/tv_movie_release_date"
+        android:fontFamily="@font/roboto_mono_thin"
         android:textSize="14sp"/>
 </LinearLayout>
