@@ -13,6 +13,7 @@ import com.example.moviesapp.Model.Movies;
 import com.example.moviesapp.R;
 import com.example.moviesapp.database.AppRepository;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static com.example.moviesapp.ui.MainActivity.calculateNoOfColumns;
@@ -21,7 +22,7 @@ public class FavActivity extends AppCompatActivity implements MoviesAdapter.onMo
 
 
     RecyclerView mFavRecycler;
-    private Movies[] mMovieData;
+    private ArrayList<Movies> mMovieData = null;
     private static final String PASSED_MOVIE_KEY = "passed movie";
 
     @Override
@@ -42,7 +43,7 @@ public class FavActivity extends AppCompatActivity implements MoviesAdapter.onMo
 
     private void loadFavMovies(List<Movies> movies) {
 
-        mMovieData = movies.toArray(new Movies[0]);
+        mMovieData = (ArrayList<Movies>) movies;
         MoviesAdapter moviesAdapter = new MoviesAdapter(mMovieData,this);
         int colWidth = calculateNoOfColumns(FavActivity.this);
         GridLayoutManager layoutManager =new GridLayoutManager(FavActivity.this,colWidth);
@@ -61,7 +62,7 @@ public class FavActivity extends AppCompatActivity implements MoviesAdapter.onMo
 
         Intent intent = new Intent(this, DetailActivity.class);
 
-        intent.putExtra(PASSED_MOVIE_KEY,mMovieData[position]);
+        intent.putExtra(PASSED_MOVIE_KEY, mMovieData.get(position));
         startActivity(intent);
     }
 }

@@ -19,6 +19,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 
+import com.example.moviesapp.Listeners.EndlessScrollListener;
 import com.example.moviesapp.Model.Movies;
 import com.example.moviesapp.R;
 import com.example.moviesapp.Utilities.JSONUtils;
@@ -29,14 +30,19 @@ import org.json.JSONException;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 public class MainActivity extends AppCompatActivity implements MoviesAdapter.onMovieClickListener {
 
 
     private static final String PASSED_MOVIE_KEY = "passed movie";
-    Movies[] mMovieData = null;
+    ArrayList<Movies> mMovieData = null;
     private static String TAG = "MainActivity.java";
     private static String query = "popular";
+    private static int page = 1;
+    private static MoviesAdapter mMoviesAdapter;
+    public static GridLayoutManager mGridLayoutManager;
 
 //    MoviesAdapter.onMovieClickListener mMovieCLickListener;
 
@@ -55,7 +61,12 @@ public class MainActivity extends AppCompatActivity implements MoviesAdapter.onM
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
 
+        checkConnection();
 
+
+    }
+
+    private void checkConnection() {
         if(isOnline())
         {
             unerror();
@@ -65,10 +76,8 @@ public class MainActivity extends AppCompatActivity implements MoviesAdapter.onM
             error();
 
         }
-
-
-
     }
+
     //ERROR page on Visible on the screen
     public final void error() {
         error.setVisibility(View.VISIBLE);
@@ -94,16 +103,17 @@ public class MainActivity extends AppCompatActivity implements MoviesAdapter.onM
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
 
-        if (item.getItemId()==R.id.menu_highest){
+        if (item.getItemId()==R.id.menu_highest && !query.equalsIgnoreCase("top_rated")){
             query = "top_rated";
+            loadData();
             return true;
         }
-        if (item.getItemId()==R.id.menu_upcoming){
+        if (item.getItemId()==R.id.menu_upcoming && !query.equalsIgnoreCase("upcoming")){
             query = "upcoming";
             loadData();
             return true;
         }
-        if (item.getItemId()==R.id.menu_popular){
+        if (item.getItemId()==R.id.menu_popular && !query.equalsIgnoreCase("popular")){
             query = "popular";
             loadData();
             return true;
@@ -128,12 +138,12 @@ public class MainActivity extends AppCompatActivity implements MoviesAdapter.onM
 
        Intent intent = new Intent(this, DetailActivity.class);
 
-        intent.putExtra(PASSED_MOVIE_KEY,mMovieData[position]);
+        intent.putExtra(PASSED_MOVIE_KEY, mMovieData.get(position));
         startActivity(intent);
 
 
     }
-    class AsyncCustom extends AsyncTask<String,Void,Movies[]> {
+    class AsyncCustom extends AsyncTask<String,Void,ArrayList<Movies>> {
 
         @Override
         protected void onPreExecute() {
@@ -144,7 +154,7 @@ public class MainActivity extends AppCompatActivity implements MoviesAdapter.onM
         }
 
         @Override
-        protected void onPostExecute(Movies[] movies) {
+        protected void onPostExecute(ArrayList<Movies> movies) {
 
             if (movies==null){
                 error();
@@ -152,23 +162,28 @@ public class MainActivity extends AppCompatActivity implements MoviesAdapter.onM
             }
 
             super.onPostExecute(movies);
-            updateUI(movies);
+            if (mGridLayoutManager == null)
+                updateUI();
 
         }
 
 
         @Override
-        protected Movies[] doInBackground(String... strings) {
+        protected ArrayList<Movies> doInBackground(String... strings) {
             String query = strings[0];
-            URL url = NetworkUtil.buildUrl(query);
+            URL url = NetworkUtil.buildUrl(query,page);
             if (url==null){
                 return null;
             }
             try {
                 String response = NetworkUtil.getHTTPSResponse(url);
 
+                Movies[] data = JSONUtils.getJSONDetails(response);
                 Log.i("ERROR", "doInBackground: "+query);
-                mMovieData = JSONUtils.getJSONDetails(response);
+                if (mMovieData == null){
+                    mMovieData = new ArrayList<>(Arrays.asList(data));
+                }
+                mMovieData.addAll(Arrays.asList(data));
 
             } catch (IOException e) {
                 e.printStackTrace();
@@ -180,16 +195,24 @@ public class MainActivity extends AppCompatActivity implements MoviesAdapter.onM
     }
 
 
-    private void updateUI(Movies[] movies) {
+    private void updateUI() {
 
-        MoviesAdapter moviesAdapter = new MoviesAdapter(movies,this);
+        mMoviesAdapter = new MoviesAdapter(mMovieData,this);
 
         int colWidth = calculateNoOfColumns(MainActivity.this);
-        GridLayoutManager layoutManager =new GridLayoutManager(MainActivity.this,colWidth);
+        mGridLayoutManager =new GridLayoutManager(MainActivity.this,colWidth);
 
         mRecyclerView.setHasFixedSize(true);
-        mRecyclerView.setLayoutManager(layoutManager);
-        mRecyclerView.setAdapter(moviesAdapter);
+        mRecyclerView.setLayoutManager(mGridLayoutManager);
+        mRecyclerView.setAdapter(mMoviesAdapter);
+        EndlessScrollListener scrollListener = new EndlessScrollListener(mGridLayoutManager) {
+            @Override
+            public void loadMoreData(int currentPage) {
+                page = currentPage;
+                loadData();
+            }
+        };
+        mRecyclerView.addOnScrollListener(scrollListener);
 
         progressBar.setVisibility(View.INVISIBLE);
         mRecyclerView.setVisibility(View.VISIBLE);
@@ -199,8 +222,7 @@ public class MainActivity extends AppCompatActivity implements MoviesAdapter.onM
     public static int calculateNoOfColumns(Context context) {
         DisplayMetrics displayMetrics = context.getResources().getDisplayMetrics();
         float dpWidth = displayMetrics.widthPixels / displayMetrics.density;
-        int noOfColumns = (int) (dpWidth / 180);
-        return noOfColumns;
+        return (int) (dpWidth / 180);
     }
 
     //Checks the internet connection

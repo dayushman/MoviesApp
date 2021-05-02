@@ -12,15 +12,17 @@ import com.example.moviesapp.Model.Movies;
 import com.example.moviesapp.R;
 import com.squareup.picasso.Picasso;
 
+import java.util.ArrayList;
+
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import static androidx.recyclerview.widget.RecyclerView.*;
 
 public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.MovieVH> {
-    Movies[] MovieList;
+    ArrayList<Movies> MovieList;
     onMovieClickListener MovieClickListener;
-    public MoviesAdapter(Movies[] data,onMovieClickListener movieClickListener){
+    public MoviesAdapter(ArrayList<Movies> data,onMovieClickListener movieClickListener){
         MovieList = data;
         MovieClickListener = movieClickListener;
     }
@@ -40,9 +42,9 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.MovieVH> {
     @Override
     public void onBindViewHolder(@NonNull MoviesAdapter.MovieVH holder, int position) {
 
-        holder.mTextView.setText(MovieList[position].getTitle());
+        holder.mTextView.setText(MovieList.get(position).getTitle());
 
-        String posterPath = MovieList[position].getPoster();
+        String posterPath = MovieList.get(position).getPoster();
 
         Picasso.get().load(posterPath)
                 .error(R.drawable.image_not_found)
@@ -53,12 +55,7 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.MovieVH> {
 
     @Override
     public int getItemCount() {
-        if (MovieList ==null){
-            empty();
-            return 0;
-
-        }
-        else return MovieList.length;
+         return MovieList.size();
     }
 
     private void empty() {

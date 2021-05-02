@@ -282,7 +282,6 @@ public class DetailActivity extends AppCompatActivity {
         LinearLayoutManager layoutManager = new LinearLayoutManager(this,RecyclerView.VERTICAL,false);
         mTrailerRecycleView.setAdapter(adapter);
         mTrailerRecycleView.setLayoutManager(layoutManager);
-       // ViewCompat.setNestedScrollingEnabled(mTrailerRecycleView,false);
         mTrailerRecycleView.setHasFixedSize(true);
 
     }
