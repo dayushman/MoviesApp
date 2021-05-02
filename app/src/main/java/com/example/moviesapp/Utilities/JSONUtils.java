@@ -52,8 +52,7 @@ public class JSONUtils {
             movies.setTitle(json.optString(TITLE_KEY));
             movies.setRating(json.get(RATING_KEY).toString());
 
-            Log.i("JSON UTILS", "getJSONDetails: "+json.get(RATING_KEY).toString());
-            Log.i("JSON UTILS", "getJSONDetails: "+movies.getRating());
+            Log.i("JSON UTILS", "getJSONDetails: "+movies.getHeader() + "  "+movies.getPoster());
             movies.setReleaseDate(json.optString(RELEASE_DATE_KEY));
 
             movieresult[i]=movies;

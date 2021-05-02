@@ -104,13 +104,14 @@ public class DetailActivity extends AppCompatActivity {
         String rating = movies.getRating();
         String desc = movies.getOverview();
         String movieID = movies.getMovieID();
+        String header = movies.getHeader();
 
         ButterKnife.bind(this);
 
 
         Picasso.get().load(IMAGE_API_URL+poster).error(R.drawable.image_not_found)
                 .into(posterView);
-        Picasso.get().load(IMAGE_API_URL+poster).error(R.drawable.image_not_found)
+        Picasso.get().load(IMAGE_API_URL+header).error(R.drawable.image_not_found)
                 .into(headerView);
 
         titleView.setText(title);
