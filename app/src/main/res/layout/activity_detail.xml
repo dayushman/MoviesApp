@@ -131,7 +131,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
             android:text="@string/label_trailers"
-            app:layout_constraintBottom_toTopOf="@+id/rv_review"
+            app:layout_constraintBottom_toTopOf="@+id/rv_trailers"
             app:layout_constraintEnd_toStartOf="@+id/btn_rev_expnd"
             app:layout_constraintStart_toStartOf="@id/start_margin"
             app:layout_constraintTop_toBottomOf="@+id/tv_desc" />
@@ -144,10 +144,10 @@
             android:layout_marginTop="24dp"
             android:layout_marginBottom="24dp"
             android:text="@string/label_review"
-            app:layout_constraintBottom_toTopOf="@+id/rv_trailers"
+            app:layout_constraintBottom_toTopOf="@+id/rv_review"
             app:layout_constraintEnd_toStartOf="@+id/btn_trailer_expnd"
             app:layout_constraintStart_toStartOf="@id/start_margin"
-            app:layout_constraintTop_toBottomOf="@+id/rv_review" />
+            app:layout_constraintTop_toBottomOf="@+id/rv_trailers" />
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/start_margin"
@@ -160,7 +160,7 @@
             app:layout_constraintStart_toStartOf="parent" />
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_review"
+            android:id="@+id/rv_trailers"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
@@ -175,7 +175,7 @@
         </androidx.recyclerview.widget.RecyclerView>
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_trailers"
+            android:id="@+id/rv_review"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"

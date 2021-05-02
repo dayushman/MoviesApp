@@ -61,7 +61,7 @@ public class DetailActivity extends AppCompatActivity {
     @BindView(R.id.iv_header)
     public ImageView headerView;
 
-    @BindView(R.id.rv_trailers)
+    @BindView(R.id.rv_review)
     public RecyclerView mTrailerRecycleView;
 
 
@@ -74,7 +74,7 @@ public class DetailActivity extends AppCompatActivity {
     @BindView(R.id.btn_trailer_expnd)
     public ImageButton mTrailerExpBtn;
 
-    @BindView(R.id.rv_review)
+    @BindView(R.id.rv_trailers)
     public RecyclerView mReviewRecycleView;
 
 
