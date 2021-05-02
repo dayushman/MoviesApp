@@ -30,10 +30,15 @@ public abstract class EndlessScrollListener extends RecyclerView.OnScrollListene
             previousTotal = totalItemCount;
         }
 
-        if (!loading && gridLayoutManager.findLastVisibleItemPosition()==totalItemCount-1){
-            currentPage++;
-            loadMoreData(currentPage);
-            loading = true;
+        if (gridLayoutManager.findLastVisibleItemPosition()==totalItemCount-1){
+            if(loading){
+
+            }
+            else{
+                currentPage++;
+                loadMoreData(currentPage);
+                loading = true;
+            }
         }
 
     }

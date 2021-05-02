@@ -147,12 +147,12 @@ public class DetailActivity extends AppCompatActivity {
             public void onClick(View v) {
                 if (reviewStatus==-1){
                     mReviewRecycleView.setVisibility(View.VISIBLE);
-
+                    mRevExpBtn.setImageResource(R.drawable.ic_baseline_expand_less_24);
                     reviewStatus =1;
                 }
                 else{
                     mReviewRecycleView.setVisibility(View.GONE);
-
+                    mRevExpBtn.setImageResource(R.drawable.ic_baseline_expand_more_24);
                     reviewStatus=-1;
                 }}
         });
@@ -163,11 +163,13 @@ public class DetailActivity extends AppCompatActivity {
                 if (trailerStatus==-1){
                     trailerStatus = 1;
                     mTrailerRecycleView.setVisibility(View.VISIBLE);
+                    mTrailerExpBtn.setImageResource(R.drawable.ic_baseline_expand_less_24);
 
                 }
                 else{
                     trailerStatus = -1;
                     mTrailerRecycleView.setVisibility(View.GONE);
+                    mTrailerExpBtn.setImageResource(R.drawable.ic_baseline_expand_more_24);
 
                 }
 
