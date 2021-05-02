@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity implements MoviesAdapter.onM
     private static final String PASSED_MOVIE_KEY = "passed movie";
     ArrayList<Movies> mMovieData = null;
     private static String TAG = "MainActivity.java";
-    private static String query = "popular";
+    public static String query = "popular";
     private static int page = 1;
     private static MoviesAdapter mMoviesAdapter;
     public static GridLayoutManager mGridLayoutManager;
@@ -105,20 +105,24 @@ public class MainActivity extends AppCompatActivity implements MoviesAdapter.onM
 
         if (item.getItemId()==R.id.menu_highest && !query.equalsIgnoreCase("top_rated")){
             query = "top_rated";
+            reset();
             loadData();
             return true;
         }
         if (item.getItemId()==R.id.menu_upcoming && !query.equalsIgnoreCase("upcoming")){
             query = "upcoming";
+            reset();
             loadData();
             return true;
         }
         if (item.getItemId()==R.id.menu_popular && !query.equalsIgnoreCase("popular")){
             query = "popular";
+            reset();
             loadData();
             return true;
         }
         if (item.getItemId() == R.id.fav_menu_btn){
+            reset();
             Intent intent = new Intent(MainActivity.this, FavActivity.class);
             startActivity(intent);
             return true;
@@ -126,7 +130,12 @@ public class MainActivity extends AppCompatActivity implements MoviesAdapter.onM
         return super.onOptionsItemSelected(item);
     }
 
-
+    private void reset() {
+        page = 1;
+        mMovieData = null;
+        mGridLayoutManager = null;
+        mMoviesAdapter = null;
+    }
 
 
     private void loadData() {

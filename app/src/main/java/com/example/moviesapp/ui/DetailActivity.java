@@ -97,6 +97,7 @@ public class DetailActivity extends AppCompatActivity {
         mAppRepo = new AppRepository(getApplication());
 
 
+
         Intent intent = getIntent();
         final Movies movies = (Movies) intent.getSerializableExtra(PASSED_MOVIE_KEY);
         String title = movies.getTitle();
@@ -129,8 +130,14 @@ public class DetailActivity extends AppCompatActivity {
 
             String trailerEndPoint = movieID + "/videos";
             loadTrailer(trailerEndPoint);
-            String reviewEndPoint = movieID + "/reviews";
-            loadReviews(reviewEndPoint);
+            if(MainActivity.query.equalsIgnoreCase("upcoming")){
+                findViewById(R.id.tv_review_label).setVisibility(View.GONE);
+                findViewById(R.id.btn_rev_expnd).setVisibility(View.GONE);
+            }
+            else{
+                String reviewEndPoint = movieID + "/reviews";
+                loadReviews(reviewEndPoint);
+            }
 
         }
 
