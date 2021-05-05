@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity implements MoviesAdapter.onM
 
     private static final String PASSED_MOVIE_KEY = "passed movie";
     ArrayList<Movies> mMovieData = null;
-    private static String TAG = "MainActivity.java";
+    private static final String TAG = "MainActivity.java";
     public static String query = "popular";
     private static int page = 1;
     private static MoviesAdapter mMoviesAdapter;
@@ -157,8 +157,11 @@ public class MainActivity extends AppCompatActivity implements MoviesAdapter.onM
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
-            progressBar.setVisibility(View.VISIBLE);
-            mRecyclerView.setVisibility(View.INVISIBLE);
+            error.setVisibility(View.INVISIBLE);
+            if (mMovieData == null){
+                progressBar.setVisibility(View.VISIBLE);
+                mRecyclerView.setVisibility(View.INVISIBLE);
+            }
 
         }
 
@@ -173,6 +176,11 @@ public class MainActivity extends AppCompatActivity implements MoviesAdapter.onM
             super.onPostExecute(movies);
             if (mGridLayoutManager == null)
                 updateUI();
+            else{
+                mMoviesAdapter.setMovieList(mMovieData);
+                mMoviesAdapter.notifyDataSetChanged();
+            }
+
 
         }
 
@@ -189,9 +197,10 @@ public class MainActivity extends AppCompatActivity implements MoviesAdapter.onM
 
                 Movies[] data = JSONUtils.getJSONDetails(response);
                 Log.i("ERROR", "doInBackground: "+query);
-                if (mMovieData == null){
+                if (mMovieData == null || Integer.parseInt(data[0].getMovieID()) == Integer.parseInt(mMovieData.get(0).getMovieID())){
                     mMovieData = new ArrayList<>(Arrays.asList(data));
                 }
+                Log.e(TAG, "doInBackground: "+Arrays.toString(data) );
                 mMovieData.addAll(Arrays.asList(data));
 
             } catch (IOException e) {
@@ -208,6 +217,7 @@ public class MainActivity extends AppCompatActivity implements MoviesAdapter.onM
 
         mMoviesAdapter = new MoviesAdapter(mMovieData,this);
 
+
         int colWidth = calculateNoOfColumns(MainActivity.this);
         mGridLayoutManager =new GridLayoutManager(MainActivity.this,colWidth);
 
@@ -222,7 +232,6 @@ public class MainActivity extends AppCompatActivity implements MoviesAdapter.onM
             }
         };
         mRecyclerView.addOnScrollListener(scrollListener);
-
         progressBar.setVisibility(View.INVISIBLE);
         mRecyclerView.setVisibility(View.VISIBLE);
     }

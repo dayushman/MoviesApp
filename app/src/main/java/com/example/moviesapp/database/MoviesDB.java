@@ -11,8 +11,8 @@ import androidx.room.RoomDatabase;
 @Database(entities = {Movies.class}, version = 3, exportSchema = false)
 public abstract class MoviesDB extends RoomDatabase {
     private static MoviesDB instance;
-    private static String databaseName = "fav_movies_database";
-    private static Object lock = new Object();
+    private static final String databaseName = "fav_movies_database";
+    private static final Object lock = new Object();
 
     public static MoviesDB getDatabase(Context context){
         if(instance == null){

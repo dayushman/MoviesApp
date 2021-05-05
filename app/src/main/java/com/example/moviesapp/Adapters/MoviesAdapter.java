@@ -26,6 +26,13 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.MovieVH> {
         MovieClickListener = movieClickListener;
     }
 
+    public void setMovieList(ArrayList<Movies> movieList) {
+        MovieList = movieList;
+    }
+
+    public ArrayList<Movies> getMovieList() {
+        return MovieList;
+    }
 
     @NonNull
     @Override
@@ -58,9 +65,6 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.MovieVH> {
          return MovieList.size();
     }
 
-    private void empty() {
-
-    }
 
     public static class MovieVH extends RecyclerView.ViewHolder implements View.OnClickListener {
         public ImageView mImageView;

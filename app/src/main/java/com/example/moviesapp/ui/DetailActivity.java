@@ -62,7 +62,7 @@ public class DetailActivity extends AppCompatActivity {
     public ImageView headerView;
 
     @BindView(R.id.rv_review)
-    public RecyclerView mTrailerRecycleView;
+    public RecyclerView mReviewRecycleView;
 
 
     @BindView(R.id.add_to_fav_btn)
@@ -75,7 +75,7 @@ public class DetailActivity extends AppCompatActivity {
     public ImageButton mTrailerExpBtn;
 
     @BindView(R.id.rv_trailers)
-    public RecyclerView mReviewRecycleView;
+    public RecyclerView mTrailerRecycleView;
 
 
 
@@ -142,7 +142,7 @@ public class DetailActivity extends AppCompatActivity {
         }
 
 
-        mRevExpBtn.setOnClickListener(new View.OnClickListener() {
+        mTrailerExpBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (reviewStatus==-1){
@@ -157,7 +157,7 @@ public class DetailActivity extends AppCompatActivity {
                 }}
         });
 
-        mTrailerExpBtn.setOnClickListener(new View.OnClickListener() {
+        mRevExpBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (trailerStatus==-1){

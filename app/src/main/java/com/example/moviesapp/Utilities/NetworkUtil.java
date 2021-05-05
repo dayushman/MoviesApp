@@ -1,6 +1,7 @@
 package com.example.moviesapp.Utilities;
 
 import android.net.Uri;
+import android.util.Log;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -13,7 +14,7 @@ import javax.net.ssl.HttpsURLConnection;
 public class NetworkUtil {
     private static String API_URL = "https://api.themoviedb.org/3/movie";
     private static String API_KEY_PARA = "api_key";
-    private static String PAGE_PARA = "api_key";
+    private static String PAGE_PARA = "page";
     private static String LANGUAGE_PARA = "language";
     private static String LANGUAGE = "en-US";
     private static String  API_KEY = "3d99e2f3c1a522e9a3c98fc07f836797";
@@ -38,6 +39,7 @@ public class NetworkUtil {
     }
     public static URL buildUrl(String query, int page){
         cur_page = page;
+        Log.e("NetworkUtil", "buildUrl: "+cur_page );
         Uri uri = Uri.parse(API_URL).buildUpon()
                 .appendEncodedPath(query)
                 .appendQueryParameter(API_KEY_PARA,API_KEY)
